@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ActivityService": {
+    "ConversationService": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

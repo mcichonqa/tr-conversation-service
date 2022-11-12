@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace ActivityService
+namespace ConversationService.Api
 {
     public class Program
     {

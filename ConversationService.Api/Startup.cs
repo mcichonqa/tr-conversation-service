@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 
-namespace ActivityService
+namespace ConversationService.Api
 {
     public class Startup
     {
@@ -36,17 +37,30 @@ namespace ActivityService
                             .AllowAnyMethod()
                             .Build()));
 
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            //services
+            //    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            //    {
+            //        options.Authority = Configuration.GetValue<string>("AuthorityService");
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateAudience = false,
+            //            ClockSkew = TimeSpan.FromSeconds(1)
+            //        };
+            //    });
+
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, config) =>
                 {
-                    options.Authority = Configuration.GetValue<string>("AuthorityService");
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false,
-                        ClockSkew = TimeSpan.FromSeconds(1)
-                    };
+                    config.Host("localhost", "/", h => {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                    config.ConfigureEndpoints(context);
                 });
+            });
 
             services.AddControllers();
         }
@@ -59,7 +73,7 @@ namespace ActivityService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ActivityService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ConversationService v1"));
                 
                 //IdentityModelEventSource.ShowPII = true;
             }

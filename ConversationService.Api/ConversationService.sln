@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityService.Api", "ActivityService.Api.csproj", "{BC279EFA-43E4-43A7-A62D-0D30C783553E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConversationService.Api", "ConversationService.Api.csproj", "{BC279EFA-43E4-43A7-A62D-0D30C783553E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConversationService.Contract", "..\ConversationService.Contract\ConversationService.Contract.csproj", "{71BACE2D-633A-46B2-8958-6C9A0684DCD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

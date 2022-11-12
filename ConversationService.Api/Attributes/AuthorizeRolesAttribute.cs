@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace ActivityService.Attributes
+namespace ConversationService.Api.Attributes
 {
     public class AuthorizeRolesAttribute : AuthorizeAttribute
     {
