@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConversationService.Api", "ConversationService.Api.csproj", "{BC279EFA-43E4-43A7-A62D-0D30C783553E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConversationService.Contract", "..\ConversationService.Contract\ConversationService.Contract.csproj", "{71BACE2D-633A-46B2-8958-6C9A0684DCD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConversationService.Entity", "..\ConversationService.Entity\ConversationService.Entity.csproj", "{99F2F08C-AE4A-42C4-9C45-3EFA9D8B4FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConversationService.Repository", "..\ConversationService.Repository\ConversationService.Repository.csproj", "{146D79DE-4CF1-4DD3-9328-3B16279C5573}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC279EFA-43E4-43A7-A62D-0D30C783553E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71BACE2D-633A-46B2-8958-6C9A0684DCD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F2F08C-AE4A-42C4-9C45-3EFA9D8B4FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F2F08C-AE4A-42C4-9C45-3EFA9D8B4FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F2F08C-AE4A-42C4-9C45-3EFA9D8B4FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F2F08C-AE4A-42C4-9C45-3EFA9D8B4FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{146D79DE-4CF1-4DD3-9328-3B16279C5573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{146D79DE-4CF1-4DD3-9328-3B16279C5573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{146D79DE-4CF1-4DD3-9328-3B16279C5573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{146D79DE-4CF1-4DD3-9328-3B16279C5573}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

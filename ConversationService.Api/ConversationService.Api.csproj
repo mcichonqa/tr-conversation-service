@@ -13,16 +13,25 @@
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Publisher\" />
+    <ProjectReference Include="..\ConversationService.Entity\ConversationService.Entity.csproj" />
+    <ProjectReference Include="..\ConversationService.Repository\ConversationService.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConversationService.Contract\ConversationService.Contract.csproj" />
+    <Reference Include="ScheduleService.Contract">
+      <HintPath>..\..\tr-schedule-service\ScheduleService.Contract\bin\Debug\net6.0\ScheduleService.Contract.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
