@@ -1,4 +1,5 @@
 using ConversationService.Api.Consumers.Meeting;
+using ConversationService.Api.Workers;
 using ConversationService.Entity;
 using ConversationService.Repository;
 using MassTransit;
@@ -54,22 +55,23 @@ namespace ConversationService.Api
             //        };
             //    });
 
-            services.AddMassTransit(x =>
-            {
-                x.AddConsumer<MeetingCreatedConsumer>(typeof(MeetingCreatedConsumerDefinition));
+            //services.AddMassTransit(x =>
+            //{
+            //    x.AddConsumer<MeetingCreatedConsumer>(typeof(MeetingCreatedConsumerDefinition));
 
-                x.UsingRabbitMq((context, config) =>
-                {
-                    config.Host("localhost", "/", h => {
-                        h.Username("guest");
-                        h.Password("guest");
-                    });
+            //    x.UsingRabbitMq((context, config) =>
+            //    {
+            //        config.Host("localhost", "/", h => {
+            //            h.Username("guest");
+            //            h.Password("guest");
+            //        });
 
-                    config.ConfigureEndpoints(context);
-                });
-            });
+            //        config.ConfigureEndpoints(context);
+            //    });
+            //});
 
             services.AddDbContext<ConversationContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConversationDb")));
+            services.AddHostedService<ConversationStatusWorker>();
 
             services
                  .AddControllers()

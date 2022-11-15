@@ -7,5 +7,6 @@ namespace ConversationService.Repository
     {
         Task<Conversation> GetConversationAsync(int id);
         Task<int> CreateConversationAsync(Conversation conversation);
+        Task<int> UpdateConversationsStatus();
     }
 }
