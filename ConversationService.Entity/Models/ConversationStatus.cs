@@ -3,11 +3,10 @@ namespace ConversationService.Entity.Models
 {
     public enum ConversationStatus
     {
-        WaitingForApprove,
-        NoSubscription,
-        Approved,
-        WaitingToJoin,
+        WaitingForMeeting,
+        WaitingForJoin,
         DuringConversation,
-        Closed
+        Closed,
+        Canceled
     }
 }

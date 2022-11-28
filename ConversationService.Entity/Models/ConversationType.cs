@@ -1,4 +1,4 @@
-﻿namespace ConversationService.Api.Model
+﻿namespace ConversationService.Entity.Models
 {
     public enum ConversationType
     {

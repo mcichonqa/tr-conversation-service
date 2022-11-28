@@ -1,6 +1,7 @@
-﻿using ConversationService.Repository;
+﻿using ConversationService.Application;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,9 +24,8 @@ namespace ConversationService.Api.Workers
 
                 using (var scope = _scopeFactory.CreateScope())
                 {
-                    await scope.ServiceProvider
-                        .GetRequiredService<IConversationRepository>()
-                        .UpdateConversationsStatus();
+                    int count = await scope.ServiceProvider.GetRequiredService<IConversationsService>()
+                        .UpdateConversationsStatusAsync();
                 }
             }
         }

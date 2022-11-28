@@ -1,5 +1,6 @@
 using ConversationService.Api.Consumers.Meeting;
 using ConversationService.Api.Workers;
+using ConversationService.Application;
 using ConversationService.Entity;
 using ConversationService.Repository;
 using MassTransit;
@@ -24,7 +25,7 @@ namespace ConversationService.Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public readonly IConfiguration Configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -55,20 +56,22 @@ namespace ConversationService.Api
             //        };
             //    });
 
-            //services.AddMassTransit(x =>
-            //{
-            //    x.AddConsumer<MeetingCreatedConsumer>(typeof(MeetingCreatedConsumerDefinition));
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<MeetingCreatedConsumer>(typeof(MeetingCreatedConsumerDefinition));
+                x.AddConsumer<MeetingCanceledConsumer>(typeof(MeetingCanceledConsumerDefinition));
 
-            //    x.UsingRabbitMq((context, config) =>
-            //    {
-            //        config.Host("localhost", "/", h => {
-            //            h.Username("guest");
-            //            h.Password("guest");
-            //        });
+                x.UsingRabbitMq((context, config) =>
+                {
+                    config.Host("localhost", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
 
-            //        config.ConfigureEndpoints(context);
-            //    });
-            //});
+                    config.ConfigureEndpoints(context);
+                });
+            });
 
             services.AddDbContext<ConversationContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConversationDb")));
             services.AddHostedService<ConversationStatusWorker>();
@@ -81,6 +84,7 @@ namespace ConversationService.Api
                  });
 
             services.AddScoped<IConversationRepository, ConversationRepository>();
+            services.AddScoped<IConversationsService, ConversationsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

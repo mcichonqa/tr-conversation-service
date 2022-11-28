@@ -1,5 +1,4 @@
-﻿using ConversationService.Api.Model;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ConversationService.Api.Controllers
 {

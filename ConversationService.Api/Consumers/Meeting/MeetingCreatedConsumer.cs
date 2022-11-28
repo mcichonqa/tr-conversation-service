@@ -1,6 +1,5 @@
-﻿using ConversationService.Api.Model;
+﻿using ConversationService.Application;
 using ConversationService.Entity.Models;
-using ConversationService.Repository;
 using MassTransit;
 using ScheduleService.Contract;
 using System.Threading.Tasks;
@@ -9,11 +8,11 @@ namespace ConversationService.Api.Consumers.Meeting
 {
     public class MeetingCreatedConsumer : IConsumer<MeetingCreatedEvent>
     {
-        private readonly IConversationRepository _conversationRepository; 
+        private readonly IConversationsService _conversationServices; 
 
-        public MeetingCreatedConsumer(IConversationRepository conversationRepository)
+        public MeetingCreatedConsumer(IConversationsService conversationServices)
         {
-            _conversationRepository = conversationRepository;
+            _conversationServices = conversationServices;
         }
 
         public async Task Consume(ConsumeContext<MeetingCreatedEvent> context)
@@ -25,12 +24,12 @@ namespace ConversationService.Api.Consumers.Meeting
                 ClientId = result.ClientId,
                 StartMeetingDate = result.StartMeetingDate,
                 MeetingTopic = result.MeetingTopic,
-                ConversationStatus = result.HasSubscription ? ConversationStatus.WaitingForApprove.ToString() : ConversationStatus.NoSubscription.ToString(),
-                ConversationType = ConversationType.Hybrid.ToString(),
-                ClosedBy = "Client"
+                ConversationStatus = ConversationStatus.WaitingForMeeting.ToString(),
+                ClosedBy = string.Empty,
+                MeetingId = result.Id
             };
 
-            await _conversationRepository.CreateConversationAsync(conversation);
+            await _conversationServices.CreateConversationAsync(conversation);
         }
     }
 }

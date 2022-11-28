@@ -23,6 +23,11 @@ namespace ConversationService.Entity.Configuration
                 .HasMaxLength(20)
                 .IsRequired();
 
+            builder.
+                 Property(x => x.EndMeetingDate)
+                .HasColumnType("datetime2")
+                .HasMaxLength(20);
+
             builder
                 .Property(x => x.ClientId)
                 .IsRequired();
@@ -38,11 +43,11 @@ namespace ConversationService.Entity.Configuration
                 .IsRequired();
 
             builder
-                .Property(x => x.ConversationType)
+                .Property(x => x.ClosedBy)
                 .IsRequired();
 
             builder
-                .Property(x => x.ClosedBy)
+                .Property(x => x.MeetingId)
                 .IsRequired();
         }
     }

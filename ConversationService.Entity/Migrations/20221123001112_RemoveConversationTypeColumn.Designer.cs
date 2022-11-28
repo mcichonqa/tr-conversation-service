@@ -4,6 +4,7 @@ using ConversationService.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConversationService.Entity.Migrations
 {
     [DbContext(typeof(ConversationContext))]
-    partial class ConversationContextModelSnapshot : ModelSnapshot
+    [Migration("20221123001112_RemoveConversationTypeColumn")]
+    partial class RemoveConversationTypeColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +47,6 @@ namespace ConversationService.Entity.Migrations
                     b.Property<DateTime?>("EndMeetingDate")
                         .HasMaxLength(20)
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("MeetingId")
-                        .HasColumnType("int");
 
                     b.Property<string>("MeetingTopic")
                         .IsRequired()

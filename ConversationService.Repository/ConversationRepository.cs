@@ -1,8 +1,7 @@
 ﻿using ConversationService.Entity;
 using ConversationService.Entity.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ConversationService.Repository
@@ -16,9 +15,14 @@ namespace ConversationService.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Conversation> GetConversationAsync(int id)
+        public async Task<List<Conversation>> GetConversationsAsync()
         {
-            return await _dbContext.ConversationDetails.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.ConversationDetails.ToListAsync();
+        }
+
+        public async Task<Conversation> GetConversationAsync(int meetingId)
+        {
+            return await _dbContext.ConversationDetails.FirstOrDefaultAsync(x => x.MeetingId == meetingId);
         }
 
         public async Task<int> CreateConversationAsync(Conversation conversation)
@@ -29,16 +33,10 @@ namespace ConversationService.Repository
             return await Task.FromResult(conversation.Id);
         }
 
-        public async Task<int> UpdateConversationsStatus()
+        public async Task UpdateConversationAsync(Conversation conversation)
         {
-            var conversationsForUpdate = _dbContext.ConversationDetails.Where(item => item.ConversationStatus == ConversationStatus.Approved.ToString() && EF.Functions.DateDiffSecond(item.StartMeetingDate, DateTime.UtcNow) <= 60);
-            int conversations = await conversationsForUpdate.CountAsync();
-
-            await conversationsForUpdate.ForEachAsync(x => x.ConversationStatus = ConversationStatus.WaitingToJoin.ToString());
-
+            _dbContext.ConversationDetails.Update(conversation);
             await _dbContext.SaveChangesAsync();
-
-            return await Task.FromResult(conversations);
         }
     }
 }
